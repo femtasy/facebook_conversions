@@ -26,7 +26,10 @@ defmodule FacebookConversions.Events.Event do
   @required_params [
     :event_name,
     :event_time,
-    :action_source,
+    :action_source
+  ]
+
+  @optional_params [
     :custom_data
   ]
 
@@ -45,7 +48,7 @@ defmodule FacebookConversions.Events.Event do
     attrs = Map.put(attrs, "action_source", "system_generated")
 
     changeset
-    |> cast(attrs, @required_params)
+    |> cast(attrs, @required_params ++ @optional_params)
     |> cast_embed(:user_data)
     |> validate_required(@required_params)
     |> apply_action(:update)
