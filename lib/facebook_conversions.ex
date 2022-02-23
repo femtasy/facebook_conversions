@@ -9,11 +9,26 @@ defmodule FacebookConversions do
   See [Facebook
   documentation](https://developers.facebook.com/docs/marketing-api/app-event-api/app-events-api-for-collaborative-ads)
   for more information about the API events.
+
+  ## Testing
+
+  This library provides a behaviour for each one of the modules of the
+  supported resources to implement your own [behaviour
+  mocks](https://github.com/dashbitco/mox).
   """
 
   alias FacebookConversions.Config
   alias FacebookConversions.Client
   alias FacebookConversions.Events.Event
+
+  defmodule Behaviour do
+    @moduledoc false
+
+    @callback send_events(list(Event.t()), opts :: keyword()) ::
+                {:ok, map} | {:error, Tesla.Env.t()}
+  end
+
+  @behaviour __MODULE__.Behaviour
 
   @doc """
   Sends a list of events to Facebook.
@@ -25,7 +40,7 @@ defmodule FacebookConversions do
 
   * `test_event_code`: Value to send as `test_event_code` in the request. See [testing events documentation](https://www.facebook.com/business/help/1624255387706033) for more details.
   """
-  @spec send_events(list(Event.t()), opts :: keyword()) :: {:ok, map} | {:error, Tesla.Env.t()}
+  @impl __MODULE__.Behaviour
   def send_events([%Event{} | _] = events, opts \\ []) do
     multipart =
       Tesla.Multipart.new()
