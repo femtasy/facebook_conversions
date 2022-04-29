@@ -38,7 +38,7 @@ defmodule FacebookConversions.Events.Event do
     field(:event_name, :string)
     field(:event_time, :integer)
     field(:action_source, :string)
-    field(:custom_data, :map, null: true)
+    field(:custom_data, :map)
 
     embeds_one(:user_data, UserData)
   end
