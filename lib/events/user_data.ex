@@ -39,8 +39,8 @@ defmodule FacebookConversions.Events.UserData do
     field(:client_ip_address, :string)
     field(:client_user_agent, :string)
     field(:external_id, {:array, :string})
-    field(:fbc, :string, null: true)
-    field(:fbp, :string, null: true)
+    field(:fbc, :string)
+    field(:fbp, :string)
   end
 
   @spec changeset(%__MODULE__{}, map()) :: __MODULE__.t()
