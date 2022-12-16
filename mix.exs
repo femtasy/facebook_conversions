@@ -31,7 +31,7 @@ defmodule FacebookConversions.MixProject do
       {:ecto_sql, "~> 3.4"},
       {:jason, "~> 1.0"},
       {:mox, "~> 1.0", only: :test},
-      {:tesla, "~> 1.4.0"}
+      {:tesla, "~> 1.5.0"}
     ]
   end
 
