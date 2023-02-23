@@ -7,13 +7,21 @@ defmodule FacebookConversions.MixProject do
   def project do
     [
       app: :facebook_conversions,
-      version: @version,
-      elixir: "~> 1.12",
-      start_permanent: Mix.env() == :prod,
       deps: deps(),
-      package: package(),
       docs: docs(),
-      aliases: aliases()
+      elixir: "~> 1.13",
+      elixirc_options: [warnings_as_errors: Mix.env() != :test],
+      package: package(),
+      start_permanent: Mix.env() == :prod,
+      test_coverage: [tool: ExCoveralls],
+      version: @version,
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.github": :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test
+      ]
     ]
   end
 
@@ -29,15 +37,10 @@ defmodule FacebookConversions.MixProject do
     [
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
       {:ecto_sql, "~> 3.4"},
+      {:excoveralls, "~> 0.15.0", only: [:test]},
       {:jason, "~> 1.0"},
       {:mox, "~> 1.0", only: :test},
       {:tesla, "~> 1.5.0"}
-    ]
-  end
-
-  defp aliases do
-    [
-      compile: ["compile --warnings-as-errors"]
     ]
   end
 
