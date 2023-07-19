@@ -40,7 +40,7 @@ defmodule FacebookConversions.MixProject do
       {:excoveralls, "~> 0.16.0", only: [:test]},
       {:jason, "~> 1.0"},
       {:mox, "~> 1.0", only: :test},
-      {:tesla, "~> 1.6.0"}
+      {:tesla, "~> 1.7.0"}
     ]
   end
 
