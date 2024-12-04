@@ -36,7 +36,7 @@ defmodule FacebookConversions.MixProject do
   defp deps do
     [
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
-      {:ecto_sql, "~> 3.4"},
+      {:ecto_sql, "~> 3.11.3"},
       {:excoveralls, "~> 0.16.0", only: [:test]},
       {:jason, "~> 1.0"},
       {:mox, "~> 1.0", only: :test},
